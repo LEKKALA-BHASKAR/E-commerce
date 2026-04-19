@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root { height: 100%; }
+
+html {
+  font-family: 'Inter', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-cream text-ink-800 antialiased;
+}
+
+::selection { background: #D97706; color: #FBF4E8; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(168, 148, 121, 0.35); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(168, 148, 121, 0.55); }
+
+h1, h2, h3, h4, .font-display {
+  font-family: 'Cormorant Garamond', 'Playfair Display', ui-serif, Georgia, serif;
+  letter-spacing: -0.005em;
+  font-weight: 500;
+}
+
+@layer utilities {
+  .container-luxe { @apply container; }
+}
+
+@layer components {
+  /* Light "card" surface — replaces the old dark glass look. */
+  .glass {
+    @apply rounded-2xl border border-ink-100 bg-white;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset, 0 8px 24px -18px rgba(40,25,10,0.18);
+  }
+  .glass-strong {
+    @apply rounded-3xl border border-ink-100 bg-white;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.7) inset, 0 18px 40px -28px rgba(40,25,10,0.22);
+  }
+  .panel-cream {
+    @apply rounded-2xl border border-ink-100 bg-cream-100;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-2.5 text-sm font-medium transition-all duration-200 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-gold text-white hover:bg-gold-600 hover:shadow-glow;
+  }
+  .btn-ghost {
+    @apply btn border border-ink-200 bg-white text-ink-700 hover:border-gold hover:text-gold;
+  }
+  .btn-outline {
+    @apply btn border border-gold text-gold hover:bg-gold hover:text-white;
+  }
+
+  .input {
+    @apply w-full rounded-md border border-ink-200 bg-white px-4 py-3 text-sm text-ink-800 outline-none transition focus:border-gold focus:ring-2 focus:ring-gold/20 placeholder:text-ink-300;
+  }
+  textarea.input { @apply leading-relaxed; }
+
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full border border-ink-200 bg-white px-3 py-1 text-xs uppercase tracking-wider text-ink-500;
+  }
+  .skeleton {
+    @apply relative overflow-hidden rounded-md bg-cream-200;
+    background-image: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s linear infinite;
+  }
+  .heading-display { @apply font-display tracking-tight; }
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.22em] text-gold;
+  }
+  .gold-underline { @apply relative inline-block; }
+  .gold-underline::after {
+    content: '';
+    @apply absolute left-0 -bottom-1 h-[2px] w-12 bg-gold rounded;
+  }
+  .check {
+    @apply h-4 w-4 rounded border-ink-200 text-gold focus:ring-gold/30;
+    accent-color: #D97706;
+  }
+}
+
+/* React Quill light adjustments */
+.ql-toolbar { @apply border border-ink-200 rounded-t-md bg-white; }
+.ql-container { @apply border border-ink-200 rounded-b-md bg-white text-ink-800; min-height: 240px; }
+.ql-editor { min-height: 240px; }
